@@ -757,7 +757,7 @@ int main()
 				zAxisLabel->setString("");
 			}
 			// Texts
-			angleText->setString("Theta: " + std::to_string(int(globalRotations[0] * 180 / M_PI)) + "°, Phi: " + std::to_string(int(globalRotations[1] * 180 / M_PI)) + "°, Psi: " + std::to_string(int(globalRotations[2] * 180 / M_PI)) + '°');
+			angleText->setString("Theta: " + std::to_string(int(globalRotations[0] * 180 / M_PI)) + "Â°, Phi: " + std::to_string(int(globalRotations[1] * 180 / M_PI)) + "Â°, Psi: " + std::to_string(int(globalRotations[2] * 180 / M_PI)) + 'Â°');
 			statsText->setString("Vertices: " + std::to_string(vertexCount) + " | Edges: " + std::to_string(edgesDrawn) + " | Faces: " + std::to_string(triCount) + " | Faces Drawn: " + std::to_string(faceDraws));
 			selectedMeshText->setString("Selected Mesh: " + std::to_string(selectedMeshIndex));
 
@@ -791,6 +791,8 @@ int main()
 	return 0;
 }
 
+
+// Fits geometry coordinates to screen display.
 std::vector<float> toScreenCoords(std::vector<float> axesCoordinates, std::vector<int> windowDimensions)
 {
 	std::vector<float> newCoords = { axesCoordinates[0] + windowDimensions[0] / 2,
@@ -798,6 +800,7 @@ std::vector<float> toScreenCoords(std::vector<float> axesCoordinates, std::vecto
 	return newCoords;
 }
 
+// Performs 3D rotation by angles theta, phi and psi on a vertex's coordinates.
 std::vector<float> rotate3D(std::vector<float> coordinates, float theta, float phi, float psi)
 {
 	Eigen::Vector3f oldCoordinates;
